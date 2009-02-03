@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+root = File.expand_path(File.dirname($0) + "/..")
+$:.unshift("#{root}/lib")
+
+require "rubygems"
+require "mongrel"
+require "daemonize"
+require "logger"
+require "geo_service"
+
+class Application
+  
+  def run(args)
+    config_name = "geo_service"
+    
+    args.options do |opts|
+      opts.banner = "Usage: #{File.basename($0)} [OPTIONS] [start | stop | restart | status]"
+      opts.separator ""
+      opts.on("--config NAME", String, "Configuration name to use (defaults to #{config_name}).") do |name|
+        config_name = name
+      end
+      opts.on("-h", "--help", "Show this help message.") do
+        puts opts
+        exit
+      end
+      opts.parse!
+      if args.empty?
+        puts "Nothing to do. Run with -h for help."
+        exit
+      end
+    end
+
+    config = YAML.load(File.read("config/#{config_name}.yml"))
+    
+    root = File.dirname($0) + "/.."
+    controller = DaemonController.new(
+      :root => root,
+      :pid_file => "#{root}/tmp/pids/geo_service.pid",
+      :log_file => "#{root}/log/geo_service.log")
+    controller.on_spawn do  
+      GeoService.logger = controller.logger
+      GeoService.database = GeoService::Database.new(config["database"])
+      GeoService.run(:port => config["port"])
+    end
+    controller.control(args)
+  end
+end
+
+app = Application.new
+app.run(ARGV)

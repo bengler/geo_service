@@ -1,0 +1,8 @@
+require "geo_service/handlers"
+require "geo_service/logging"
+require "geo_service/server"
+require "geo_service/database"
+require "geo_service/statistics"
+require "geo_service/postgis/geometry"
+require "geo_service/postgis/parse"
+require "geo_service/postgis/tokenize"
