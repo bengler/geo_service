@@ -12,7 +12,11 @@ set :git_enable_submodules, 0
 
 set :ssh_options, {:paranoid => false, :forward_agent => true}
 
-role :app, "blixt.park.origo.no"
+role :app,
+  "blixt.park.origo.no",
+  "pax.park.origo.no",
+  "expedit.park.origo.no",
+  "sultan.park.origo.no"
 
 # Override deployment setup.
 namespace :deploy do    
@@ -29,5 +33,20 @@ namespace :deploy do
     )
     run "umask 02 && mkdir -p #{paths.join(' ')}"
     run "if [ ! -d #{shared_path}/log ]; then ln -sfT /var/log/app/origo #{shared_path}/log; fi"
+  end
+
+  desc "Start the app"
+  task :start, :roles => :app do
+    run "sudo /etc/init.d/geo_service start"
+  end
+
+  desc "Stop the app"
+  task :stop, :roles => :app do
+    run "sudo /etc/init.d/geo_service stop"
+  end
+
+  desc "Restart the app"
+  task :restart, :roles => :app do
+    run "sudo /etc/init.d/geo_service stop; sudo /etc/init.d/geo_service start"
   end
 end
