@@ -2,6 +2,7 @@
 
 root = File.expand_path(File.dirname($0) + "/..")
 $:.unshift("#{root}/lib")
+Dir.glob("#{root}/vendor/*/lib").each { |d| $:.unshift(d) }
 
 require "rubygems"
 require "mongrel"

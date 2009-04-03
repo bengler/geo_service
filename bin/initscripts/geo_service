@@ -1,0 +1,18 @@
+#!/bin/bash
+
+root=`readlink -f $0`
+root=`dirname $root`
+root=`cd $root/../.. && pwd`
+
+function run() {
+  sudo -u origo $root/bin/geo_service --config config $1
+}
+        
+case $1 in
+  start|stop|restart|status)
+    run $1
+    ;;
+  *)
+    echo "Usage: $0 [start|stop|restart|status]"
+    exit 1
+esac
