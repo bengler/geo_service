@@ -31,10 +31,11 @@ class Application
         exit
       end
     end
-
-    config = YAML.load(File.read("config/#{config_name}.yml"))
     
     root = File.dirname($0) + "/.."
+
+    config = YAML.load(File.read("#{root}/config/#{config_name}.yml"))
+    
     controller = DaemonController.new(
       :root => root,
       :pid_file => "#{root}/tmp/pids/geo_service.pid",
