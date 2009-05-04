@@ -16,7 +16,8 @@ role :app,
   "blixt.park.origo.no",
   "pax.park.origo.no",
   "expedit.park.origo.no",
-  "sultan.park.origo.no"
+  "sultan.park.origo.no",
+  "groggy.park.origo.no"
 
 # Override deployment setup.
 namespace :deploy do    
