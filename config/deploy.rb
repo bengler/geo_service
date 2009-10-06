@@ -4,7 +4,7 @@ set :use_sudo, true
 set :deploy_to, "/srv/origo/#{application}"
 
 set :repository, "git@dev.bengler.no:/git/geo_service"
-set :branch, "master"
+set :branch, "stable"
 set :scm, :git
 set :scm_user, ENV["USER"]
 set :deploy_via, :remote_cache
