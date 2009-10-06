@@ -3,7 +3,7 @@ set :runner, "origo"
 set :use_sudo, true
 set :deploy_to, "/srv/origo/#{application}"
 
-set :repository, "dev.bengler.no:/git/geo_service"
+set :repository, "git@dev.bengler.no:/git/geo_service"
 set :branch, "master"
 set :scm, :git
 set :scm_user, ENV["USER"]
@@ -17,7 +17,10 @@ role :app,
   "pax.park.origo.no",
   "expedit.park.origo.no",
   "sultan.park.origo.no",
-  "groggy.park.origo.no"
+  "groggy.park.origo.no",
+  "trogen.park.origo.no",
+  "faktum.park.origo.no",
+  "malm.park.origo.no"
 
 # Override deployment setup.
 namespace :deploy do    
