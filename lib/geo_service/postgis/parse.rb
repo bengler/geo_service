@@ -64,7 +64,7 @@ module PostGIS
       points = []
       length = reader.read_uint32
       length.times do
-        points << parse_point(reader, false)
+        points << parse_point(reader, true)
       end
       return MultiPoint.new(points, reader.srid)
     end
@@ -75,7 +75,7 @@ module PostGIS
       points = []
       length = reader.read_uint32
       length.times do
-        points << parse_polygon(reader, false)
+        points << parse_polygon(reader, true)
       end
       return MultiPolygon.new(points, reader.srid)
     end
@@ -86,7 +86,7 @@ module PostGIS
       strings = []
       length = reader.read_uint32
       length.times do
-        strings << parse_line_string(reader, false)
+        strings << parse_line_string(reader, true)
       end
       return MultiLineString.new(strings, reader.srid)
     end
