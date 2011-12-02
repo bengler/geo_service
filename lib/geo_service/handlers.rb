@@ -43,7 +43,7 @@ module GeoService
     def handle
       stats = GeoService.statistics
       @response.start do |head, out|
-        head["Content-Type"] = "text/json"
+        head["Content-Type"] = "application/json"
         head["Cache-Control"] = "no-cache"
         out.write(stats.to_json)
       end
@@ -70,7 +70,7 @@ module GeoService
         point = map_point(lon, lat)
         output = reverse_lookup(point)
         @response.start do |head, out|
-          head["Content-Type"] = "text/json"
+          head["Content-Type"] = "application/json"
           head["Cache-Control"] = "no-cache"
           out.write(output.to_json)
         end
