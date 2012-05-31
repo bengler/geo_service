@@ -3,7 +3,7 @@ set :runner, "origo"
 set :use_sudo, true
 set :deploy_to, "/srv/origo/#{application}"
 
-set :repository, "git@github.com:origo/geo_service.git"
+set :repository, "git@github.com:bengler/geo_service.git"
 set :branch, "master"
 set :scm, :git
 set :scm_user, ENV["USER"]
