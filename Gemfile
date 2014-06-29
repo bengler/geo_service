@@ -1,4 +1,4 @@
-source 'http://rubygems.org/'
+source 'https://rubygems.org/'
 
 gem 'mongrel'
 gem 'pg', '>= 0.9'
