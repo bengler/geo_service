@@ -1,7 +1,0 @@
-port: 12000
-database:
-  name: geo_service_production
-  host: db.park.origo.no
-  port: 5432
-  user: origo
-  password: lysning
