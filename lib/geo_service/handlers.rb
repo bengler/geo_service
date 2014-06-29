@@ -108,7 +108,7 @@ module GeoService
         output = []
         sql = <<-end
           select navn, komm from fylker_pol
-          where within('#{point.to_ewkb}', the_geom)
+          where st_within('#{point.to_ewkb}', the_geom)
         end
         database = GeoService.database
         database.query(sql).each do |row|
